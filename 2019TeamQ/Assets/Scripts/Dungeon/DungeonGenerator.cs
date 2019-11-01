@@ -68,8 +68,8 @@ public class DungeonGenerator : MonoBehaviour
         RoomCreate();
         RoadCreate();
         CreateDangeon();
-        //InitPlayer();
-        //InitEnemy();
+        InitPlayer();
+        InitEnemy();
     }
 
     // 壁しかないMapデータの生成
@@ -340,26 +340,26 @@ public class DungeonGenerator : MonoBehaviour
         }
 
     }
-    //private void InitPlayer()
-    //{
-    //    int InitRoom = Random.Range(0, roomNum);
-    //    int x = Random.Range(0, RoomDVI[InitRoom].Right - RoomDVI[InitRoom].Left) + RoomDVI[InitRoom].Left;
-    //    int y = Random.Range(0, RoomDVI[InitRoom].Bottom - RoomDVI[InitRoom].Top) + RoomDVI[InitRoom].Top;
-    //    //Player.transform.position = new Vector2(x - MapWidth / 2 + 1, y - MapHeight / 2 + 1);
+    private void InitPlayer()
+    {
+        int InitRoom = Random.Range(0, roomNum);
+        int x = Random.Range(0, RoomDVI[InitRoom].Right - RoomDVI[InitRoom].Left) + RoomDVI[InitRoom].Left;
+        int y = Random.Range(0, RoomDVI[InitRoom].Bottom - RoomDVI[InitRoom].Top) + RoomDVI[InitRoom].Top;
+        Player.transform.position = new Vector2(x - MapWidth / 2 + 1, y - MapHeight / 2 + 1);
 
-    //    //Instantiate(Player, new Vector2(x - MapWidth / 2 + 1, y - MapHeight / 2 + 1), Quaternion.identity);
-    //}
-    //private void InitEnemy()
-    //{
-    //    for (int e = 0; e < Enemycount; e++)
-    //    {
-    //        int InitRoom = Random.Range(0, roomNum);
-    //        int x = Random.Range(0, RoomDVI[InitRoom].Right - RoomDVI[InitRoom].Left) + RoomDVI[InitRoom].Left;
-    //        int y = Random.Range(0, RoomDVI[InitRoom].Bottom - RoomDVI[InitRoom].Top) + RoomDVI[InitRoom].Top;
-    //        //Enemy.transform.position = new Vector2(x - MapWidth / 2 + 1, y - MapHeight / 2 + 1);
-    //        Instantiate(Enemy, new Vector2(x - MapWidth / 2+1, y - MapHeight / 2+1), Quaternion.identity);
-    //    }
-    //}
+        //Instantiate(Player, new Vector2(x - MapWidth / 2 + 1, y - MapHeight / 2 + 1), Quaternion.identity);
+    }
+    private void InitEnemy()
+    {
+        for (int e = 0; e < Enemycount; e++)
+        {
+            int InitRoom = Random.Range(0, roomNum);
+            int x = Random.Range(0, RoomDVI[InitRoom].Right - RoomDVI[InitRoom].Left) + RoomDVI[InitRoom].Left;
+            int y = Random.Range(0, RoomDVI[InitRoom].Bottom - RoomDVI[InitRoom].Top) + RoomDVI[InitRoom].Top;
+            //Enemy.transform.position = new Vector2(x - MapWidth / 2 + 1, y - MapHeight / 2 + 1);
+            Instantiate(Enemy, new Vector2(x - MapWidth / 2+1, y - MapHeight / 2+1), Quaternion.identity);
+        }
+    }
 }
 
 
