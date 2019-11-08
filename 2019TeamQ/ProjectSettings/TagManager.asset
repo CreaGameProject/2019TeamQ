@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - GameManager
+  - Enemy
+  - Weapon
+  - Boss
+  - BossAt
   layers:
   - Default
   - TransparentFX
@@ -13,10 +18,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - BlockingLayer
+  - FPlayer
+  - Enemy
+  - Wall
   - 
   - 
   - 
@@ -40,4 +45,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Boss
+    uniqueID: 1918665159
+    locked: 0
+  - name: Floor
+    uniqueID: 75145989
+    locked: 0
+  - name: Warning
+    uniqueID: 322514427
+    locked: 0
+  - name: Weapon
+    uniqueID: 2708112251
+    locked: 0
+  - name: Units
+    uniqueID: 2973414669
     locked: 0

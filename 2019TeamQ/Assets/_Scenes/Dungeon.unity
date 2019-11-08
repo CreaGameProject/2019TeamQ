@@ -409,18 +409,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 216965599}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 761850486}
-        m_MethodName: Direction_up
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &216965599
@@ -1290,8 +1279,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: PlayerAttack
+      - m_Target: {fileID: 761850486}
+        m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1859,18 +1848,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 758535963}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 761850486}
-        m_MethodName: Direction_upperleft
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &758535963
@@ -1943,22 +1921,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 761850485}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb620982c5cd34c448bfb3c1a309bf2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a7fc1c059d2300408d2cda11ae05950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 761850487}
-  circleCollider: {fileID: 761850488}
-  anm: {fileID: 761850490}
-  direction_x: 0
-  direction_y: 0
-  Spr: {fileID: 0}
   DungeonManager: {fileID: 1179835404}
   PlayerState: 0
-  HitEffect: {fileID: 0}
-  DeathEffect: {fileID: 0}
   DirectionPanel: {fileID: 1182057982}
-  sord: {fileID: 0}
-  damage: {fileID: 0}
 --- !u!50 &761850487
 Rigidbody2D:
   serializedVersion: 4
@@ -2065,10 +2033,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -55636127
+  m_SortingLayerID: -1321552627
   m_SortingLayer: 5
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 4a9fe7436c5bf4246a9cc0e0eb7a6309, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 62d3ab1a780c51544b7ca5754f4584fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2964,18 +2932,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 920933954}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 761850486}
-        m_MethodName: Direction_left
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &920933954
@@ -3098,18 +3055,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 961371467}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 761850486}
-        m_MethodName: Direction_upperright
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &961371467
@@ -3490,7 +3436,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyObj: []
   CurrentDungeonState: 0
-  levelStartFloor: 2
   floorText: {fileID: 1995069491}
   kaisouImage: {fileID: 1860926152}
 --- !u!114 &1179835407
@@ -3511,10 +3456,10 @@ MonoBehaviour:
   Player: {fileID: 761850489}
   Enemy: {fileID: 263543462547319319, guid: d26bf6c447ec3e84abe2b98922fd14b6, type: 3}
   Enemycount: 1
-  MapWidth: 38
-  MapHeight: 32
-  MinRooms: 5
-  MaxRooms: 5
+  MapWidth: 20
+  MapHeight: 20
+  MinRooms: 1
+  MaxRooms: 1
 --- !u!4 &1179835408
 Transform:
   m_ObjectHideFlags: 0
@@ -3686,18 +3631,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1186198106}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 761850486}
-        m_MethodName: Direction_buttomleft
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1186198106
@@ -3895,18 +3829,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1287853934}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 761850486}
-        m_MethodName: Direction_bottomright
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1287853934
@@ -4810,18 +4733,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1628676059}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 761850486}
-        m_MethodName: Direction_down
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1628676059
@@ -5478,8 +5390,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -6096,18 +6008,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2008964156}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 761850486}
-        m_MethodName: Direction_right
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2008964156
