@@ -8,6 +8,7 @@ public enum DungeonState
 {
     keyInput,//キー入力待ち＝プレイヤーターン開始
     PlayerTurn,//プレイヤーの行動中
+    PlayerEnd,//プレイヤーのターン終了
     EnemyBegin,//エネミーターン開始
     EnemyTurn,//エネミーの行動中
     TurnEnd,//ターン終了→KeyInputへ
@@ -20,7 +21,7 @@ public class DungeonManager : MonoBehaviour
     public GameObject[] EnemyObj;//エネミーにアタッチしているコンポーネントを使うための箱
     public DungeonState CurrentDungeonState;//現在のダンジョン内の状態
     float TurnDelay = 0.20f;//移動ごとの感覚
-    public float levelStartFloor = 2f; //レベル表示画面で2秒待つ
+    private float levelStartFloor = 2f; //レベル表示画面で2秒待つ
     public Text floorText; //kaisouテキスト
     public GameObject kaisouImage; //レベルイメージ
     private int kaisou = 0; //レベルは1にしておく
@@ -90,8 +91,8 @@ public class DungeonManager : MonoBehaviour
                 break;
             case DungeonState.keyInput:
                 break;
-            case DungeonState.PlayerTurn:
-                StartCoroutine("PlayerTurn");
+            case DungeonState.PlayerEnd:
+                StartCoroutine("PlayerEnd");
                 break;
             case DungeonState.EnemyBegin:
                 SetCurrentState(DungeonState.EnemyTurn);
@@ -106,7 +107,7 @@ public class DungeonManager : MonoBehaviour
     }
 
     //キー入力後のプレイヤーの移動の処理
-    IEnumerator PlayerTurn()
+    IEnumerator PlayerEnd()
     {
         yield return new WaitForSeconds(TurnDelay);
         SetCurrentState(DungeonState.EnemyBegin);
@@ -115,13 +116,13 @@ public class DungeonManager : MonoBehaviour
     //エネミーターンの処理
     IEnumerator EnemyTurn()
     {
-        yield return new WaitForSeconds(TurnDelay);
+        //yield return new WaitForSeconds(TurnDelay);
         GameObject[] EnemyObj = GameObject.FindGameObjectsWithTag("Enemy");
         //EnemyObjの数だけEnemyにアタッチしている移動処理を実行
         for(int x = 0; x < EnemyObj.Length; x++)
         {
-            yield return new WaitForSeconds(TurnDelay);
             EnemyObj[x].GetComponent<Enemy>().MoveEnemy();
+            yield return new WaitForSeconds(TurnDelay);
         }
         SetCurrentState(DungeonState.TurnEnd);
     }

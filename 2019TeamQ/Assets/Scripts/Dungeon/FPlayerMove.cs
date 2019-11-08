@@ -1,62 +1,135 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class FPlayerMove : MovingObject
+public class FPlayerMove : MonoBehaviour
 {
-    public SpriteRenderer Spr;//表示スプライト
     public GameObject DungeonManager;
     public DungeonState PlayerState;
-    public GameObject HitEffect;
-    public GameObject DeathEffect;
+    public GameObject DirectionPanel;
 
-    [System.NonSerialized] public int Hp = 100;
-    [System.NonSerialized] public int Atk = 30;
-    [System.NonSerialized]public int Def = 25;
+    private Rigidbody2D rb;
+    private CircleCollider2D circleCollider;
+    private Animator anm;//アニメーションコンポーネント
+    private PlayerPurameter playerpurameter;
 
-    [SerializeField] public GameObject DirectionPanel;
-       
-    public AudioClip sord;
-    public AudioClip damage;
+    private float MoveTime = 0.1f;
+    private float InverseMoveTime;
+    private int horizontal;
+    private int vertical;
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        DungeonManager = GameObject.FindGameObjectWithTag("GameManager");
+        this.rb = GetComponent<Rigidbody2D>();
+        this.circleCollider = GetComponent<CircleCollider2D>();
+        this.anm = GetComponent<Animator>();
+        this.playerpurameter = GetComponent<PlayerPurameter>();
+        playerpurameter = new PlayerPurameter();
+        playerpurameter.Pdirection_x = 0;
+        playerpurameter.Pdirection_y = -1;
+    }
 
-   
     // Update is called once per frame
     void Update()
     {
-        int horizontal = 0; //水平方向
-        int vertical = 0; //垂直方向
+        horizontal = 0; //水平方向
+        vertical = 0; //垂直方向
         horizontal = (int)(Input.GetAxisRaw("Horizontal"));
         vertical = (int)(Input.GetAxisRaw("Vertical"));
 
         if (horizontal != 0 || vertical != 0)
         {
             AttemptMove(horizontal, vertical);
-            
+
         }
     }
-   
-   
-    protected override void AttemptMove(int Xdir, int Ydir)
+
+   private void AttemptMove(int Xdir, int Ydir)
     {
-        DungeonManager = GameObject.FindGameObjectWithTag("GameManager");
+       
         PlayerState = DungeonManager.GetComponent<DungeonManager>().CurrentDungeonState;
         if (PlayerState == DungeonState.keyInput)
         {
             DungeonManager.GetComponent<DungeonManager>().SetCurrentState(DungeonState.PlayerTurn);
-            base.AttemptMove(Xdir, Ydir);
+            Vector2 StartPosition = transform.position;
+            Vector2 EndPosition = StartPosition + new Vector2(Xdir, Ydir);
+            //移動判定用、衝突するレイヤーはすべて入れる
+            int LayerObj = LayerMask.GetMask(new string[] { "Enemy", "Wall" });
+
+            //移動先に障害物があるか判定する
+            RaycastHit2D HitObj = Physics2D.Linecast(StartPosition, EndPosition, LayerObj);
+
+            playerpurameter.Pdirection_x =Xdir;
+            playerpurameter.Pdirection_y = Ydir;
+            anm.SetFloat("Direction_X", Xdir);
+            anm.SetFloat("Direction_Y", Ydir);
+            
+            //Physics2Dで移動先に障害物がなければMovementを実行
+            if (HitObj.transform == null)
+            {
+                
+                StartCoroutine(Movement(EndPosition));
+            }
+            //physics2Dで移動先に何かあれば何もしない
+            else if (HitObj.transform != null)
+            {
+                DungeonManager.GetComponent<DungeonManager>().SetCurrentState(DungeonState.keyInput);
+            }
+
         }
+       
+
+       
+
+    }
+    private IEnumerator Movement(Vector3 EndPosition)
+    {
+        float sqrRemainingDistance = (transform.position - EndPosition).sqrMagnitude;
+        InverseMoveTime = 1f / MoveTime;
+        while (sqrRemainingDistance > float.Epsilon)
+        {
+            Vector3 NewPosition = Vector3.MoveTowards(rb.position, EndPosition, InverseMoveTime * Time.deltaTime);
+            rb.MovePosition(NewPosition);
+            sqrRemainingDistance = (transform.position - EndPosition).sqrMagnitude;
+            yield return null;
+        }
+        DungeonManager.GetComponent<DungeonManager>().SetCurrentState(DungeonState.PlayerEnd);
+
     }
 
     public void Attack()
     {
+        PlayerState = DungeonManager.GetComponent<DungeonManager>().CurrentDungeonState;
+        if (PlayerState == DungeonState.keyInput)
+        {
+            DungeonManager.GetComponent<DungeonManager>().SetCurrentState(DungeonState.PlayerTurn);
+            Vector2 NowPosition = transform.position;
+            Vector2 AtkRange = NowPosition + new Vector2(playerpurameter.Pdirection_x, playerpurameter.Pdirection_y);
+            Debug.Log(AtkRange);
+            //攻撃判定用
+            int LayerCha = LayerMask.GetMask(new string[] { "Enemy" });
 
+            //攻撃先に敵がいるかどうか判定する
+            RaycastHit2D Hitcha = Physics2D.Linecast(NowPosition, AtkRange, LayerCha);
+
+            Debug.Log(Hitcha.transform);
+            //Physics2Dで攻撃先に敵がいればダメージ計算
+            if (Hitcha.transform != null)
+            {
+                //敵の関数を取得し、変数を代入可能にする
+                GameObject HitComponent = Hitcha.transform.gameObject;
+                Enemy Script = HitComponent.GetComponent<Enemy>();
+                //ダメージ計算
+                int Damage = playerpurameter.PAtk * playerpurameter.PAtk / (playerpurameter.PAtk + Script.Def);
+                //オブジェクトのHp変数にダメージを与える
+                Script.Hp -= Damage;
+                Debug.Log(Damage + "のダメージを与えた");
+            }
+            DungeonManager.GetComponent<DungeonManager>().SetCurrentState(DungeonState.PlayerEnd);
+        }
     }
-
-
-
-    //ボタン用のメソッド
     public void Button_up()
     {
         AttemptMove(0, 1);
@@ -89,58 +162,4 @@ public class FPlayerMove : MovingObject
     {
         AttemptMove(0, -1);
     }
-    public void DirectionMode()
-    {
-        DirectionPanel.SetActive(true);
-    }
-    public void Direction_up()
-    {
-        SetCharactorDirection(0, 1);
-        DirectionPanel.SetActive(false);
-    }
-    public void Direction_upperright()
-    {
-        SetCharactorDirection(1, 1);
-        DirectionPanel.SetActive(false);
-    }
-    public void Direction_upperleft()
-    {
-        SetCharactorDirection(-1, 1);
-        DirectionPanel.SetActive(false);
-    }
-    public void Direction_right()
-    {
-        SetCharactorDirection(1, 0);
-        DirectionPanel.SetActive(false);
-    }
-    public void Direction_left()
-    {
-        SetCharactorDirection(-1, 0);
-        DirectionPanel.SetActive(false);
-    }
-    public void Direction_bottomright()
-    {
-        SetCharactorDirection(1, -1);
-        DirectionPanel.SetActive(false);
-    }
-    public void Direction_buttomleft()
-    {
-        SetCharactorDirection(-1, -1);
-        DirectionPanel.SetActive(false);
-    }
-    public void Direction_down()
-    {
-        SetCharactorDirection(0, -1);
-        DirectionPanel.SetActive(false);
-    }
-    public void Button_foot()
-    {
-        PlayerState = DungeonManager.GetComponent<DungeonManager>().CurrentDungeonState;
-        if (PlayerState == DungeonState.keyInput)
-        {
-
-            DungeonManager.GetComponent<DungeonManager>().SetCurrentState(DungeonState.EnemyBegin);
-        }
-    }
-
 }
