@@ -45,7 +45,7 @@ public Dictionary<string, bool> itemFlags = new Dictionary<string, bool>();
         return itemFlags[itemName];
     }
 
-    //ここまでアイテム管理終了。失礼しました
+    //ここまでアイテム管理
 
 
 
