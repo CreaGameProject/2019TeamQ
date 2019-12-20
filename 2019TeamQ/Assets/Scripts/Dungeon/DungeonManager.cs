@@ -17,6 +17,7 @@ public enum DungeonState
 
 public class DungeonManager : MonoBehaviour
 {
+
     public static DungeonManager instance;
     public GameObject[] EnemyObj;//エネミーにアタッチしているコンポーネントを使うための箱
     public DungeonState CurrentDungeonState;//現在のダンジョン内の状態
@@ -24,7 +25,7 @@ public class DungeonManager : MonoBehaviour
     private float levelStartFloor = 2f; //レベル表示画面で2秒待つ
     public Text floorText; //kaisouテキスト
     public GameObject kaisouImage; //レベルイメージ
-    private int kaisou = 0; //レベルは1にしておく
+    private int kaisou = 0; //レベルは0にしておく
     private bool doingSetup; //kaisouImageの表示等で活用
     private void Awake()
     {
