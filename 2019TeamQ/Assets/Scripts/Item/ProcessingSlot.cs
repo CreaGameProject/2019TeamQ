@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class ProcessingSlot : MonoBehaviour
 
     //　アイテム情報を表示するテキストUI
     private Text informationText;
+    private Text informationNameText;
     //　アイテムの名前を表示するテキストUIプレハブ
     [SerializeField]
     private GameObject itemSlotTitleUI;
@@ -38,6 +40,7 @@ public class ProcessingSlot : MonoBehaviour
     {
         //　アイテムスロットの親の親からInformationゲームオブジェクトを探しTextコンポーネントを取得する
         informationText = transform.parent.parent.Find("Information").GetChild(0).GetComponent<Text>();
+        informationNameText = transform.parent.parent.Find("Information").GetChild(1).GetComponent<Text>();
     }
 
     public void MouseOver()
@@ -54,6 +57,9 @@ public class ProcessingSlot : MonoBehaviour
         itemSlotTitleText.text = myItemData.GetItemName();
         //　情報表示テキストに自身のアイテムの情報を表示
         informationText.text = myItemData.GetItemInformation();
+        //　情報表示テキストに自身のアイテムの名前を表示
+        informationNameText.text = myItemData.GetItemName();        
+
     }
 
     public void MouseExit()
@@ -62,6 +68,7 @@ public class ProcessingSlot : MonoBehaviour
         if (itemSlotTitleUIInstance != null)
         {
             informationText.text = "";
+            informationText.name = "";
             Destroy(itemSlotTitleUIInstance);
         }
     }

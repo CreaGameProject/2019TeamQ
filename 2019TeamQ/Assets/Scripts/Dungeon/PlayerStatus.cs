@@ -21,7 +21,7 @@ public class PlayerStatus : MonoBehaviour
  //ここからアイテム管理導入
 
 //　アイテムを持っているかどうかのフラグ
-private Dictionary<string, bool> itemFlags = new Dictionary<string, bool>();
+public Dictionary<string, bool> itemFlags = new Dictionary<string, bool>();
     //　アイテムデータベース
     [SerializeField]
     private ItemDataBase itemDataBase;
@@ -33,10 +33,10 @@ private Dictionary<string, bool> itemFlags = new Dictionary<string, bool>();
         {
             itemFlags.Add(item.GetItemName(), false);
         }
-        //　とりあえず適当にアイテムを持っていることにする
-        itemFlags["FlashLight"] = true;
-        itemFlags["BroadSword"] = true;
-        itemFlags["HandGun"] = true;
+        //　とりあえず適当にアイテムを持っていることにしない
+        itemFlags["FlashLight"] = false;
+        itemFlags["BroadSword"] = false;
+        itemFlags["HandGun"] = false;
     }
 
     //　アイテムを所持しているかどうか
@@ -45,7 +45,7 @@ private Dictionary<string, bool> itemFlags = new Dictionary<string, bool>();
         return itemFlags[itemName];
     }
 
-    //ここまでアイテム管理終了。失礼しました
+    //ここまでアイテム管理
 
 
 
