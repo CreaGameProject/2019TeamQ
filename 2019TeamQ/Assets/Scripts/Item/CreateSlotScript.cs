@@ -11,10 +11,10 @@ public class CreateSlotScript : MonoBehaviour
     private GameObject slot;
     //　主人公のステータス
     [SerializeField]
-    private PlayerStatus myStatus;
+    private PlayerPurameter myStatus;
     //　アイテムデータベース
     [SerializeField]
-    private ItemDataBase itemDataBase;
+    private PlayerPurameter itemDataBase;
 
     //　アクティブになった時
     void OnEnable()

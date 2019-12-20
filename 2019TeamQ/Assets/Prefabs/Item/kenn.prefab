@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5647068734488085063}
   - component: {fileID: 2661789454003762765}
-  - component: {fileID: 6692819784074088912}
   - component: {fileID: 1817499789295412860}
+  - component: {fileID: -1347235030613688631}
   m_Layer: 9
   m_Name: kenn
   m_TagString: Untagged
@@ -82,20 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6692819784074088912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995453188632138655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8b160d2e93db754e8e824ed1ee6baa2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  script: {fileID: 0}
 --- !u!61 &1817499789295412860
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -122,3 +108,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
+--- !u!114 &-1347235030613688631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995453188632138655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8b160d2e93db754e8e824ed1ee6baa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  script: {fileID: 0}

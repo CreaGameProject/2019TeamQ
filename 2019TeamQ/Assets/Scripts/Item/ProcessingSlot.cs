@@ -69,6 +69,7 @@ public class ProcessingSlot : MonoBehaviour
         {
             informationText.text = "";
             informationText.name = "";
+            informationNameText.text = "";
             Destroy(itemSlotTitleUIInstance);
         }
     }

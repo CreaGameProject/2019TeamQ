@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerPurameter : MonoBehaviour
 {
@@ -16,6 +17,62 @@ public class PlayerPurameter : MonoBehaviour
     float hungry;
     public int Pdirection_x { get; set; }
     public int Pdirection_y { get; set; }
+
+    //　アイテムを持っているかどうかのフラグ
+    public Dictionary<string, bool> itemFlags = new Dictionary<string, bool>();
+    //　アイテムデータのリスト
+    public List<ItemData> itemDataList = new List<ItemData>();
+
+
+
+    void Awake()
+    {
+        //　アイテムの全情報を作成
+        itemDataList.Add(new ItemData(Resources.Load("kenn", typeof(Sprite)) as Sprite, "FlashLight",  "あれば便利な辺りを照らすライト"));
+        itemDataList.Add(new ItemData(Resources.Load("kenn", typeof(Sprite)) as Sprite, "BroadSword",  "普通の剣"));
+        itemDataList.Add(new ItemData(Resources.Load("kenn", typeof(Sprite)) as Sprite, "HandGun",  "標準のハンドガン"));
+
+    }
+    //　全アイテムデータを返す
+    public List<ItemData> GetItemDataList()
+    {
+        return itemDataList;
+    }
+    //　個々のアイテムデータを返す
+    public ItemData GetItemData(string itemName)
+    {
+        foreach (var item in itemDataList)
+        {
+            if (item.GetItemName() == itemName)
+            {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    //ここからアイテム管理導入
+
+    private void Start()
+    {
+        //　とりあえず全てのアイテムのフラグを作成
+        foreach (var item in GetItemDataList())
+        {
+            itemFlags.Add(item.GetItemName(), false);
+        }
+        //　とりあえずアイテムを持っていることにしない
+        itemFlags["FlashLight"] = false;
+        itemFlags["BroadSword"] = false;
+        itemFlags["HandGun"] = false;
+    }
+
+    //　アイテムを所持しているかどうか
+    public bool GetItemFlag(string itemName)
+    {
+        return itemFlags[itemName];
+    }
+
+    //ここまでアイテム管理
 
     //現在の経験値の取得と読み取り
     public int Experience
@@ -37,3 +94,4 @@ public class PlayerPurameter : MonoBehaviour
         }
     }
 }
+

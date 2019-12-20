@@ -5,7 +5,7 @@ using UnityEngine;
 public class add_to_inventory : MonoBehaviour
 {
    public Type type; 
-    public PlayerStatus script; 
+    public PlayerPurameter script; 
     //アイテムの方のスクリプトもここで後で宣言 
  
     public enum Type
@@ -15,7 +15,7 @@ public class add_to_inventory : MonoBehaviour
  
     void Start()
     { 
-        script = GameObject.Find("FPlayer ").GetComponent<PlayerStatus>();
+        script = GameObject.Find("EventSystem ").GetComponent<PlayerPurameter>();
     } 
      
     void OnTriggerEnter2D(Collider2D other)
