@@ -3,9 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum WeaponState
+{
+    None,    //素手
+    Sword,   //剣
+    Spear,   //槍
+    Ax       //斧
+}
 public class PlayerPurameter : MonoBehaviour
 {
-    public int Plevel { get; set; } = 1;            //レベル
+    public WeaponState CurrentWeaponState { get; set; } = WeaponState.None;//装備中の武器
+    public bool Shield { get; set; } = false;
+    public int PLevel { get; set; } = 1;            //レベル
     public int PMaxHP { get; set; } = 10;           //最大HP
     public int PNowHP { get; set; } = 10;           //現在のHP
     public int PAtk { get; set; } = 10;             //攻撃力
@@ -84,7 +93,7 @@ public class PlayerPurameter : MonoBehaviour
             if (PEXP_rui >= PEXP_nextrui)
             {
                 PEXP_rui -= PEXP_nextrui;
-                Plevel += 1;
+                PLevel += 1;
                 PEXP_nextrui = Mathf.RoundToInt(PEXP_nextrui * 1.2f);
                 PMaxHP = Mathf.RoundToInt(PMaxHP * 1.2f);
                 PAtk = Mathf.RoundToInt(PAtk * 1.2f);

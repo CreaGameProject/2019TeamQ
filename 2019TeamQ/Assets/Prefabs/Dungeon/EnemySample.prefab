@@ -84,14 +84,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30305a5a7b5900b42a69537f8564b789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 263543462547319315}
-  circleCollider: {fileID: 263543462547319314}
-  anm: {fileID: 263543462547319318}
+  DungeonManager: {fileID: 0}
   direction_x: 0
   direction_y: 0
-  Spr: {fileID: 0}
-  HitEffect: {fileID: 0}
-  DeathEffect: {fileID: 0}
   Name: 
 --- !u!212 &263543462547319317
 SpriteRenderer:
@@ -129,7 +124,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -55636127
-  m_SortingLayer: 5
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7da857ec3ea4cf246be92be5d89fcb2b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -152,7 +147,7 @@ Animator:
   m_GameObject: {fileID: 263543462547319319}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 25536bf33cfcc4e43a1a91f6d3966bca, type: 2}
+  m_Controller: {fileID: 22100000, guid: fb6a34aa75647d5409629026783ec679, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
