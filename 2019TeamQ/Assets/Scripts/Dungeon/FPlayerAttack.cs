@@ -33,12 +33,13 @@ public class FPlayerAttack : MonoBehaviour
         PlayerState = DungeonManager.GetComponent<DungeonManager>().CurrentDungeonState;
         if (PlayerState == DungeonState.keyInput)
         {
+          
             DungeonManager.GetComponent<DungeonManager>().SetCurrentState(DungeonState.PlayerTurn);
             Vector2 NowPosition = transform.position;
+           
             //攻撃判定用
             int LayerCha = LayerMask.GetMask(new string[] { "Enemy" });
 
-            //攻撃先に敵がいるかどうか判定する
             //攻撃先に敵がいるかどうか判定する
             RaycastHit2D HitCha;
             if (playerpurameter.CurrentWeaponState == WeaponState.Spear)
@@ -48,8 +49,9 @@ public class FPlayerAttack : MonoBehaviour
             else
             {
                 HitCha = Physics2D.Raycast(NowPosition, new Vector2(playerpurameter.Pdirection_x, playerpurameter.Pdirection_y), 1.5f, LayerCha);
-                Debug.DrawRay(NowPosition, new Vector2(playerpurameter.Pdirection_x, playerpurameter.Pdirection_y) * 10, Color.red, 10,false);
             }
+            
+
             anm.SetTrigger("Attack");
             Debug.Log(HitCha.transform);
             //Physics2Dで攻撃先に敵がいればダメージ計算
@@ -62,13 +64,11 @@ public class FPlayerAttack : MonoBehaviour
                 int Damage = playerpurameter.PAtk * playerpurameter.PAtk / (playerpurameter.PAtk + Script.Def);
                 //オブジェクトのHp変数にダメージを与える
                 Script.Hp -= Damage;
-                Debug.Log(Damage);
                DungeonManager.GetComponent<DungeonTextController>().ShowMessage(Damage + "のダメージを与えた\n");
             }
             DungeonManager.GetComponent<DungeonManager>().SetCurrentState(DungeonState.PlayerEnd);
         }
     }
-
     public void BowAttack()
     {
         PlayerState = DungeonManager.GetComponent<DungeonManager>().CurrentDungeonState;

@@ -22,12 +22,11 @@ public class FPlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DungeonManager = GameObject.FindGameObjectWithTag("GameManager");
+        DungeonManager = GameObject.Find("DungeonManager");
         this.rb = GetComponent<Rigidbody2D>();
         this.circleCollider = GetComponent<CircleCollider2D>();
         this.anm = GetComponent<Animator>();
-        this.playerpurameter = GetComponent<PlayerPurameter>();
-        playerpurameter = new PlayerPurameter();
+        this.playerpurameter = GameObject.Find("GameManager").GetComponent<PlayerPurameter>();
         playerpurameter.Pdirection_x = 0;
         playerpurameter.Pdirection_y = -1;
     }
@@ -80,6 +79,9 @@ public class FPlayerMove : MonoBehaviour
             }
 
         }
+       
+
+       
 
     }
     private IEnumerator Movement(Vector3 EndPosition)
@@ -97,37 +99,7 @@ public class FPlayerMove : MonoBehaviour
 
     }
 
-    public void Attack()
-    {
-        PlayerState = DungeonManager.GetComponent<DungeonManager>().CurrentDungeonState;
-        if (PlayerState == DungeonState.keyInput)
-        {
-            DungeonManager.GetComponent<DungeonManager>().SetCurrentState(DungeonState.PlayerTurn);
-            Vector2 NowPosition = transform.position;
-            Vector2 AtkRange = NowPosition + new Vector2(playerpurameter.Pdirection_x, playerpurameter.Pdirection_y);
-            Debug.Log(AtkRange);
-            //攻撃判定用
-            int LayerCha = LayerMask.GetMask(new string[] { "Enemy" });
-
-            //攻撃先に敵がいるかどうか判定する
-            RaycastHit2D Hitcha = Physics2D.Linecast(NowPosition, AtkRange, LayerCha);
-
-            Debug.Log(Hitcha.transform);
-            //Physics2Dで攻撃先に敵がいればダメージ計算
-            if (Hitcha.transform != null)
-            {
-                //敵の関数を取得し、変数を代入可能にする
-                GameObject HitComponent = Hitcha.transform.gameObject;
-                Enemy Script = HitComponent.GetComponent<Enemy>();
-                //ダメージ計算
-                int Damage = playerpurameter.PAtk * playerpurameter.PAtk / (playerpurameter.PAtk + Script.Def);
-                //オブジェクトのHp変数にダメージを与える
-                Script.Hp -= Damage;
-                Debug.Log(Damage + "のダメージを与えた");
-            }
-            DungeonManager.GetComponent<DungeonManager>().SetCurrentState(DungeonState.PlayerEnd);
-        }
-    }
+   
     public void Button_up()
     {
         AttemptMove(0, 1);
