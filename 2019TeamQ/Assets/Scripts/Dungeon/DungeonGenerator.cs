@@ -29,7 +29,6 @@ public class DungeonGenerator : MonoBehaviour
     [SerializeField]
     private GameObject BroadSword;
 
-    [Header("カウント数")]
     //敵の数
     [SerializeField]
     [Range(0, 5)]
@@ -326,16 +325,17 @@ public class DungeonGenerator : MonoBehaviour
             {
                 if (Map[i, j] == roadID||Map[i,j]==roomID)
                 {// 床を敷き詰める
-                    GameObject instance=Instantiate(floor, new Vector2(i - MapWidth / 2, j - MapHeight / 2), Quaternion.identity);
+                    GameObject instance = Instantiate(floor, new Vector2(i - MapWidth / 2, j - MapHeight / 2), Quaternion.identity) as GameObject;
                     instance.transform.SetParent(boardHolder);
                 }
                 
                 // 壁だった場合壁にする
                 if (Map[i, j] == wallID)
                 {
-                   
-                    GameObject instance=Instantiate(wall, new Vector2(i - MapWidth / 2,  j - MapHeight / 2), Quaternion.identity);
+
+                    GameObject instance = Instantiate(wall, new Vector2(i - MapWidth / 2, j - MapHeight / 2), Quaternion.identity) as GameObject;
                     instance.transform.SetParent(boardHolder);
+                    
                 }
             }
         }
@@ -343,18 +343,17 @@ public class DungeonGenerator : MonoBehaviour
         // 外壁を作る
         for (int i = -1; i < MapHeight + 1; i++)
         {
-                GameObject instance1 = Instantiate(iron, new Vector2(-1 - MapWidth / 2, i - MapHeight / 2), Quaternion.identity);
-                GameObject instance2 = Instantiate(iron, new Vector2(MapWidth - MapWidth / 2, i - MapHeight / 2), Quaternion.identity);
-
+            GameObject instance1 = Instantiate(iron, new Vector2(-1 - MapWidth / 2, i - MapHeight / 2), Quaternion.identity);
+            GameObject instance2 = Instantiate(iron, new Vector2(MapWidth - MapWidth / 2, i - MapHeight / 2), Quaternion.identity);
             instance1.transform.SetParent(boardHolder);
             instance2.transform.SetParent(boardHolder);
         }
         for (int i = -1; i < MapWidth; i++)
         {
-                GameObject instance1 = Instantiate(iron, new Vector2(i - MapWidth / 2, -1 - MapHeight / 2), Quaternion.identity);
-                GameObject instance2 = Instantiate(iron, new Vector2(i - MapWidth / 2,  MapHeight - MapHeight / 2), Quaternion.identity);
-                instance1.transform.SetParent(boardHolder);
-                instance2.transform.SetParent(boardHolder);
+            GameObject instance1 = Instantiate(iron, new Vector2(i - MapWidth / 2, -1 - MapHeight / 2), Quaternion.identity);
+            GameObject instance2 = Instantiate(iron, new Vector2(i - MapWidth / 2, MapHeight - MapHeight / 2), Quaternion.identity);
+            instance1.transform.SetParent(boardHolder);
+            instance2.transform.SetParent(boardHolder);
         }
 
     }
