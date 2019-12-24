@@ -15,7 +15,7 @@ public class add_to_inventory : MonoBehaviour
  
     void Start()
     { 
-        script = GameObject.Find("EventSystem ").GetComponent<PlayerPurameter>();
+        script = GameObject.Find("GameManager").GetComponent<PlayerPurameter>();
     } 
      
     void OnTriggerEnter2D(Collider2D other)

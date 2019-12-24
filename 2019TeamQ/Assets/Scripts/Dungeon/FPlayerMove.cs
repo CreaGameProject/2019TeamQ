@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FPlayerMove : MonoBehaviour
 {
+    public GameObject TextPanel;
     public GameObject DungeonManager;
     public DungeonState PlayerState;
     public GameObject DirectionPanel;
@@ -48,7 +49,7 @@ public class FPlayerMove : MonoBehaviour
 
    private void AttemptMove(int Xdir, int Ydir)
     {
-       
+        TextPanel.SetActive(false);
         PlayerState = DungeonManager.GetComponent<DungeonManager>().CurrentDungeonState;
         if (PlayerState == DungeonState.keyInput)
         {
@@ -79,9 +80,6 @@ public class FPlayerMove : MonoBehaviour
             }
 
         }
-       
-
-       
 
     }
     private IEnumerator Movement(Vector3 EndPosition)
