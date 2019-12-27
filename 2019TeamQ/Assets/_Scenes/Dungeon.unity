@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 191041930}
   - component: {fileID: 191041929}
   m_Layer: 5
-  m_Name: Button.yumi
+  m_Name: Button.Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,8 +240,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 37.5, y: -37.5}
-  m_SizeDelta: {x: -75, y: -75}
+  m_AnchoredPosition: {x: 27.5, y: -30}
+  m_SizeDelta: {x: -115, y: -110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &191041929
 MonoBehaviour:
@@ -287,7 +287,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 761850487}
-        m_MethodName: BowAttack
+        m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -319,9 +319,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: -178740228649328893, guid: ffb3eee701c241940a0ca8f7184bfe6d,
-    type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: de23095fa8aa12248a9a29c4b28ba9c8, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -676,7 +675,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &292846655
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1126,9 +1125,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: -178740228649328893, guid: ffb3eee701c241940a0ca8f7184bfe6d,
-    type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 1b72ec76480dfa645a1f1a3db4fadbf9, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1234,7 +1232,7 @@ GameObject:
   - component: {fileID: 722288470}
   - component: {fileID: 722288469}
   m_Layer: 5
-  m_Name: Button.Attack
+  m_Name: Button.BowAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1257,8 +1255,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -37.5, y: -37.5}
-  m_SizeDelta: {x: -75, y: -75}
+  m_AnchoredPosition: {x: -27.5, y: -30}
+  m_SizeDelta: {x: -115, y: -110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &722288469
 MonoBehaviour:
@@ -1304,7 +1302,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 761850487}
-        m_MethodName: Attack
+        m_MethodName: BowAttack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1336,9 +1334,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: -178740228649328893, guid: ffb3eee701c241940a0ca8f7184bfe6d,
-    type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 1325ff3e593907646957ff6252232d2e, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3401,7 +3398,7 @@ MonoBehaviour:
   BroadSword: {fileID: 1995453188632138655, guid: 473e992cee49a3241bb03d4a47e21796,
     type: 3}
   Enemycount: 1
-  BroadSwordcount: 1
+  BroadSwordcount: 2
   MapWidth: 20
   MapHeight: 20
   MinRooms: 1
@@ -3660,7 +3657,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1186990896
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3735,7 +3732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1211698244
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3756,7 +3753,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 12.700012, y: -5.7998962}
+  m_AnchoredPosition: {x: 12.700012, y: -5.7998657}
   m_SizeDelta: {x: 763.5, y: 351.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1211698245
@@ -3967,7 +3964,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.070129395, y: -30.174896}
+  m_AnchoredPosition: {x: 0.070129395, y: -30.174927}
   m_SizeDelta: {x: -971.27, y: -596.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1324613263
@@ -4192,7 +4189,7 @@ GameObject:
   - component: {fileID: 1365171040}
   - component: {fileID: 1365171039}
   m_Layer: 5
-  m_Name: Button.Direction
+  m_Name: Button.Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4215,8 +4212,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 37.5}
-  m_SizeDelta: {x: 0, y: -75}
+  m_AnchoredPosition: {x: 0, y: 17.5}
+  m_SizeDelta: {x: -110, y: -115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1365171039
 MonoBehaviour:
@@ -4294,9 +4291,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: -178740228649328893, guid: ffb3eee701c241940a0ca8f7184bfe6d,
-    type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 5982d3d39febf984787e1d36f20725c1, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4330,7 +4326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1421902590
 RectTransform:
   m_ObjectHideFlags: 0
