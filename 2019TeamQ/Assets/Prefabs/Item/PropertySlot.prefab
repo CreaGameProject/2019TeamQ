@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1237691589204016842}
   - component: {fileID: 8779659647953164180}
   - component: {fileID: 7628760029996229487}
+  - component: {fileID: 8778360443018920665}
   - component: {fileID: 6973725763059601519}
-  - component: {fileID: 611774658465459567}
   m_Layer: 5
   m_Name: PropertySlot
   m_TagString: Untagged
@@ -33,6 +33,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7892403235149594604}
+  - {fileID: 1899840419551213991}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -93,6 +94,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSlotTitleUI: {fileID: 2629521448794270980, guid: 4cc211f2a8eca3c49abacc177c11865a,
     type: 3}
+--- !u!114 &8778360443018920665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3096709500778981974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 064b1f9837d2d5b459b586de69c1ed2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EquipText: {fileID: 8382104611906361205}
+  processingSlot: {fileID: 7628760029996229487}
+  itemDataBase: {fileID: 7660347878620211456, guid: 1ef342ce703d9ce46be860d0cc057ea0,
+    type: 3}
 --- !u!114 &6973725763059601519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +161,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 611774658465459567}
+        - m_Target: {fileID: 0}
           m_MethodName: OnSortiePointClick
           m_Mode: 0
           m_Arguments:
@@ -157,19 +174,6 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
---- !u!114 &611774658465459567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3096709500778981974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 064b1f9837d2d5b459b586de69c1ed2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Equip_Text: {fileID: 8382104611906361205}
 --- !u!1 &7712989463881592666
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,8 +202,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1899840419551213991}
+  m_Children: []
   m_Father: {fileID: 3525336242783792334}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -257,8 +260,9 @@ GameObject:
   - component: {fileID: 1899840419551213991}
   - component: {fileID: 6072101184500545049}
   - component: {fileID: 7529755589312235065}
+  - component: {fileID: 2651405149053598811}
   m_Layer: 5
-  m_Name: Text
+  m_Name: EText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -271,12 +275,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8382104611906361205}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 7892403235149594604}
-  m_RootOrder: 0
+  m_Father: {fileID: 3525336242783792334}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -325,3 +329,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: E
+--- !u!114 &2651405149053598811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8382104611906361205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 064b1f9837d2d5b459b586de69c1ed2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EquipText: {fileID: 0}
+  processingSlot: {fileID: 0}
+  itemDataBase: {fileID: 0}
