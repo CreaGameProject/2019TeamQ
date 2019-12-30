@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum WeaponState
-{
-    None,    //素手
-    Sword,   //剣
-    Spear,   //槍
-    Ax       //斧
-}
+
 public class PlayerPurameter : MonoBehaviour
 {
-    public WeaponState CurrentWeaponState { get; set; } = WeaponState.None;//装備中の武器
+    void Awake()
+    {
+        //　アイテムの全情報を作成
+        itemDataList.Add(new ItemData(Resources.Load("None", typeof(Sprite)) as Sprite, "Fighter", "素手", 0));
+        itemDataList.Add(new ItemData(Resources.Load("kenn", typeof(Sprite)) as Sprite, "BroadSword", "よくある剣", 5));
+        itemDataList.Add(new ItemData(Resources.Load("spear", typeof(Sprite)) as Sprite, "LongSpear", "超長い槍", 3));
+        itemDataList.Add(new ItemData(Resources.Load("Ax", typeof(Sprite)) as Sprite, "LegendAx", "伝説の斧", 7));
+
+    }
+    public ItemData CurrentWeaponState; //装備中の武器
     public bool Shield { get; set; } = false;
     public int PLevel { get; set; } = 1;            //レベル
     [SerializeField]
@@ -55,14 +58,6 @@ public class PlayerPurameter : MonoBehaviour
 
 
 
-    void Awake()
-    {
-        //　アイテムの全情報を作成
-        itemDataList.Add(new ItemData(Resources.Load("kenn", typeof(Sprite)) as Sprite, "FlashLight", "あれば便利な辺りを照らすライト"));
-        itemDataList.Add(new ItemData(Resources.Load("kenn", typeof(Sprite)) as Sprite, "BroadSword", "普通の剣"));
-        itemDataList.Add(new ItemData(Resources.Load("kenn", typeof(Sprite)) as Sprite, "HandGun", "標準のハンドガン"));
-
-    }
     //　全アイテムデータを返す
     public List<ItemData> GetItemDataList()
     {
@@ -92,9 +87,9 @@ public class PlayerPurameter : MonoBehaviour
             itemFlags.Add(item.GetItemName(), false);
         }
         //　とりあえずアイテムを持っていることにしない
-        itemFlags["FlashLight"] = false;
         itemFlags["BroadSword"] = false;
-        itemFlags["HandGun"] = false;
+        itemFlags["LongSpear"] = false;
+        itemFlags["LegendAx"] = false;
     }
 
     //　アイテムを所持しているかどうか
@@ -105,5 +100,16 @@ public class PlayerPurameter : MonoBehaviour
 
     //ここまでアイテム管理
 
-   
+    //ステータス上昇・下降
+    public void PAtkUp(int WAtk) //装備
+    {
+        //装備の攻撃力分プレイヤーの攻撃力を上昇
+        PAtk =WAtk+PAtk;
+    }
+    public void PAtkDown(int WAtk) //装備解除
+    {
+        //装備していた攻撃力分プレイヤーの攻撃力を下降
+        PAtk =- WAtk + PAtk;
+    }
+
 }

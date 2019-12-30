@@ -45,7 +45,7 @@ public class ProcessingSlot : MonoBehaviour
 
     public void MouseOver()
     {
-        if (itemSlotTitleUIInstance != null)
+        if (itemSlotTitleUI != null)
         {
             Destroy(itemSlotTitleUIInstance);
         }

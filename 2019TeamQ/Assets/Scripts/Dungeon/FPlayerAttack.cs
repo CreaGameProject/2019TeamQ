@@ -42,7 +42,7 @@ public class FPlayerAttack : MonoBehaviour
 
             //攻撃先に敵がいるかどうか判定する
             RaycastHit2D HitCha;
-            if (playerpurameter.CurrentWeaponState == WeaponState.Spear)
+            if (playerpurameter.CurrentWeaponState.GetItemName() == "LongSpear")
             {
                 HitCha = Physics2D.Raycast(NowPosition, new Vector2(playerpurameter.Pdirection_x, playerpurameter.Pdirection_y), 2.9f, LayerCha);
             }
