@@ -13,13 +13,17 @@ public class ItemData
     private string itemInformation;
     //アイテムのパラメータ
     private int itemPower;
+    //アイテムの種類
+    private string itemType;
 
-    public ItemData(Sprite image, string itemName, string information,int itemPower)
+
+    public ItemData(Sprite image, string itemName, string information,int itemPower,string itemType)
     {
         this.itemSprite = image;
         this.itemName = itemName;
         this.itemInformation = information;
         this.itemPower = itemPower;
+        this.itemType = itemType;
 
     }
 
@@ -44,6 +48,11 @@ public class ItemData
     public int GetItemPower()
     {
         return itemPower;
+    }
+
+    public string GetItemType()
+    {
+        return itemType;
     }
 }
 

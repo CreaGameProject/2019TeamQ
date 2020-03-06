@@ -9,13 +9,22 @@ public class PlayerPurameter : MonoBehaviour
     void Awake()
     {
         //　アイテムの全情報を作成
-        itemDataList.Add(new ItemData(Resources.Load("None", typeof(Sprite)) as Sprite, "Fighter", "素手", 0));
-        itemDataList.Add(new ItemData(Resources.Load("kenn", typeof(Sprite)) as Sprite, "BroadSword", "よくある剣", 5));
-        itemDataList.Add(new ItemData(Resources.Load("spear", typeof(Sprite)) as Sprite, "LongSpear", "超長い槍", 3));
-        itemDataList.Add(new ItemData(Resources.Load("Ax", typeof(Sprite)) as Sprite, "LegendAx", "伝説の斧", 7));
+        itemDataList.Add(new ItemData(Resources.Load("None", typeof(Sprite)) as Sprite, "None", "素手", 0, "武器"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/kenn", typeof(Sprite)) as Sprite, "BroadSword", "よくある剣", 5,"武器"));
+        itemDataList.Add(new ItemData(Resources.Load("spear", typeof(Sprite)) as Sprite, "LongSpear", "超長い槍", 4,"武器"));
+        itemDataList.Add(new ItemData(Resources.Load("Ax", typeof(Sprite)) as Sprite, "LegendAx", "伝説の斧", 7,"武器"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/yumi", typeof(Sprite)) as Sprite, "LongBow", "木の弓", 3,"武器"));
+
+        NameList = new List<string>(itemDictionary.Keys); //個数表の初期化
 
     }
-    public ItemData CurrentWeaponState; //装備中の武器
+
+    public Dictionary<string, int> itemDictionary = new Dictionary<string, int>() {
+  {"BroadSword", 0}, {"LongSpear", 0} ,{"LegendAx", 0},{"LongBow",0}
+};
+    public List<string> NameList;          //アイテムの個数表
+
+    public ItemData CurrentWeaponState ; //装備中の武器
     public bool Shield { get; set; } = false;
     public int PLevel { get; set; } = 1;            //レベル
     [SerializeField]
@@ -61,6 +70,7 @@ public class PlayerPurameter : MonoBehaviour
     //　全アイテムデータを返す
     public List<ItemData> GetItemDataList()
     {
+
         return itemDataList;
     }
     //　個々のアイテムデータを返す
@@ -90,6 +100,9 @@ public class PlayerPurameter : MonoBehaviour
         itemFlags["BroadSword"] = false;
         itemFlags["LongSpear"] = false;
         itemFlags["LegendAx"] = false;
+        itemFlags["LongBow"] = false;
+
+        CurrentWeaponState = itemDataList[0];
     }
 
     //　アイテムを所持しているかどうか
@@ -101,15 +114,15 @@ public class PlayerPurameter : MonoBehaviour
     //ここまでアイテム管理
 
     //ステータス上昇・下降
-    public void PAtkUp(int WAtk) //装備
+    public void PAtkUp() //装備
     {
+        PAtk = 10;
         //装備の攻撃力分プレイヤーの攻撃力を上昇
-        PAtk =WAtk+PAtk;
+        PAtk =CurrentWeaponState.GetItemPower() + PAtk;
     }
-    public void PAtkDown(int WAtk) //装備解除
+    public void PNowHPUP(int itemHP) 
     {
-        //装備していた攻撃力分プレイヤーの攻撃力を下降
-        PAtk =- WAtk + PAtk;
+        PNowHP += itemHP;
     }
 
 }

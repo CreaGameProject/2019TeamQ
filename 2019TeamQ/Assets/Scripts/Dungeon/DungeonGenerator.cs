@@ -25,18 +25,26 @@ public class DungeonGenerator : MonoBehaviour
     [SerializeField]
     private GameObject Enemy;
 
-    [Header("アイテム剣のトランスフォーム")]
+    [Header("剣のトランスフォーム")]
     [SerializeField]
     private GameObject BroadSword;
+
+    [Header("弓のトランスフォーム")]
+    [SerializeField]
+    private GameObject LongBow;
 
     //敵の数
     [SerializeField]
     [Range(0, 5)]
     int Enemycount;
-
+    //剣の数
     [SerializeField]
     [Range(0, 5)]
     int BroadSwordcount;
+    //弓の数
+    [SerializeField]
+    [Range(0, 5)]
+    int LongBowcount;
 
     [Header("マップ全体の大きさ")]
     [SerializeField]
@@ -80,6 +88,7 @@ public class DungeonGenerator : MonoBehaviour
         InitPlayer();
         InitEnemy();
         InitBroadSword();
+        InitLongBow();
     }
 
     // 壁しかないMapデータの生成
@@ -385,6 +394,16 @@ public class DungeonGenerator : MonoBehaviour
             int x = Random.Range(0, RoomDVI[InitRoom].Right - RoomDVI[InitRoom].Left) + RoomDVI[InitRoom].Left;
             int y = Random.Range(0, RoomDVI[InitRoom].Bottom - RoomDVI[InitRoom].Top) + RoomDVI[InitRoom].Top;
             Instantiate(BroadSword, new Vector2(x - MapWidth / 2 + 1, y - MapHeight / 2 + 1), Quaternion.identity);
+        }
+    }
+    private void InitLongBow()
+    {
+        for (int e = 0; e < LongBowcount; e++)
+        {
+            int InitRoom = Random.Range(0, roomNum);
+            int x = Random.Range(0, RoomDVI[InitRoom].Right - RoomDVI[InitRoom].Left) + RoomDVI[InitRoom].Left;
+            int y = Random.Range(0, RoomDVI[InitRoom].Bottom - RoomDVI[InitRoom].Top) + RoomDVI[InitRoom].Top;
+            Instantiate(LongBow, new Vector2(x - MapWidth / 2 + 1, y - MapHeight / 2 + 1), Quaternion.identity);
         }
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - Weapon
   - Boss
   - BossAt
+  - itemslot
   layers:
   - Default
   - TransparentFX

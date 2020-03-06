@@ -17,6 +17,8 @@ public class ProcessingSlot : MonoBehaviour
     private GameObject itemSlotTitleUIInstance;
     //　自身のアイテムデータを入れておく
     public ItemData myItemData;
+    //PlayerPuramaterスクリプトを取得
+    PlayerPurameter codeB;
 
     //　スロットが非アクティブになったら削除
     void OnDisable()
@@ -41,6 +43,9 @@ public class ProcessingSlot : MonoBehaviour
         //　アイテムスロットの親の親からInformationゲームオブジェクトを探しTextコンポーネントを取得する
         informationText = transform.parent.parent.Find("Information").GetChild(0).GetComponent<Text>();
         informationNameText = transform.parent.parent.Find("Information").GetChild(1).GetComponent<Text>();
+
+        codeB = GameObject.Find("GameManager").GetComponent<PlayerPurameter>();
+
     }
 
     public void MouseOver()
@@ -71,6 +76,19 @@ public class ProcessingSlot : MonoBehaviour
             informationText.name = "";
             informationNameText.text = "";
             Destroy(itemSlotTitleUIInstance);
+        }
+    }
+
+    void Update()
+    {
+       
+        if (codeB.CurrentWeaponState == myItemData)
+        {
+            transform.GetChild(1).gameObject.SetActive(true);
+        }
+        else if (codeB.CurrentWeaponState != myItemData)
+        {
+            transform.GetChild(1).gameObject.SetActive(false);
         }
     }
 }
