@@ -1567,7 +1567,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 064b1f9837d2d5b459b586de69c1ed2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  processingSlot: {fileID: 0}
 --- !u!1 &751551468
 GameObject:
   m_ObjectHideFlags: 0
@@ -3463,9 +3462,18 @@ MonoBehaviour:
   BroadSword: {fileID: 1995453188632138655, guid: 473e992cee49a3241bb03d4a47e21796,
     type: 3}
   LongBow: {fileID: 468184750296389432, guid: b2cd0382eda76174aaec2dd51a683cf9, type: 3}
+  HeelPotion: {fileID: 7183963831850679661, guid: 1e97bbd5cecf19d4f8c665ad06de72b3,
+    type: 3}
+  Ex_HeelPotion: {fileID: 3112511332095956833, guid: 33a1a6978021a4c4ba53dfed3c4c508b,
+    type: 3}
+  Full_HeelPotion: {fileID: 2174508901187507838, guid: f2f221c676c33c04ba947a0587b9c9b8,
+    type: 3}
   Enemycount: 1
   BroadSwordcount: 5
   LongBowcount: 1
+  HeelPotioncount: 3
+  Ex_HeelPotioncount: 2
+  Full_HeelPotioncount: 2
   MapWidth: 20
   MapHeight: 20
   MinRooms: 1
@@ -4048,7 +4056,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 3096709500778981974, guid: bc3021d17afb68d409e0059047b914fa, type: 3}
   myStatus: {fileID: 2010943877}
-  itemDataBase: {fileID: 2010943877}
 --- !u!114 &1324613264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6446,6 +6453,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7660347878620211458, guid: 1ef342ce703d9ce46be860d0cc057ea0,
+        type: 3}
+      propertyPath: pauseUI
+      value: 
+      objectReference: {fileID: 1211698243}
     - target: {fileID: 7660347878620211459, guid: 1ef342ce703d9ce46be860d0cc057ea0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6501,10 +6513,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7660347878620211458, guid: 1ef342ce703d9ce46be860d0cc057ea0,
-        type: 3}
-      propertyPath: pauseUI
-      value: 
-      objectReference: {fileID: 1211698243}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ef342ce703d9ce46be860d0cc057ea0, type: 3}
