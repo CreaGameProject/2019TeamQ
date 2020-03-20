@@ -37,7 +37,7 @@ public class PlayerPurameter : MonoBehaviour
     private int PEXP_rui = 0;                       //現在の経験値
     public int PEXP_nextrui { get; set; } = 10;     //次のレベルまで
 
-    float hungry;
+    public float Hungry { get; set; } = 100;
     public int Pdirection_x { get; set; }
     public int Pdirection_y { get; set; }
 
