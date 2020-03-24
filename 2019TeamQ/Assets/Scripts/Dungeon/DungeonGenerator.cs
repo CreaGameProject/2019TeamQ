@@ -33,6 +33,18 @@ public class DungeonGenerator : MonoBehaviour
     [SerializeField]
     private GameObject LongBow;
 
+    [Header("ヒールポーションのトランスフォーム")]
+    [SerializeField]
+    private GameObject HeelPotion;
+
+    [Header("エクスヒールポーションのトランスフォーム")]
+    [SerializeField]
+    private GameObject Ex_HeelPotion;
+
+    [Header("フルヒールポーションのトランスフォーム")]
+    [SerializeField]
+    private GameObject Full_HeelPotion;
+
     //敵の数
     [SerializeField]
     [Range(0, 5)]
@@ -45,6 +57,18 @@ public class DungeonGenerator : MonoBehaviour
     [SerializeField]
     [Range(0, 5)]
     int LongBowcount;
+
+    [SerializeField]
+    [Range(0, 5)]
+    int HeelPotioncount;
+
+    [SerializeField]
+    [Range(0, 5)]
+    int Ex_HeelPotioncount;
+
+    [SerializeField]
+    [Range(0, 5)]
+    int Full_HeelPotioncount;
 
     [Header("マップ全体の大きさ")]
     [SerializeField]
@@ -89,6 +113,9 @@ public class DungeonGenerator : MonoBehaviour
         InitEnemy();
         InitBroadSword();
         InitLongBow();
+        InitHeelPotion();
+        InitEx_HeelPotion();
+        InitFull_HeelPotion();
     }
 
     // 壁しかないMapデータの生成
@@ -404,6 +431,39 @@ public class DungeonGenerator : MonoBehaviour
             int x = Random.Range(0, RoomDVI[InitRoom].Right - RoomDVI[InitRoom].Left) + RoomDVI[InitRoom].Left;
             int y = Random.Range(0, RoomDVI[InitRoom].Bottom - RoomDVI[InitRoom].Top) + RoomDVI[InitRoom].Top;
             Instantiate(LongBow, new Vector2(x - MapWidth / 2 + 1, y - MapHeight / 2 + 1), Quaternion.identity);
+        }
+    }
+
+    private void InitHeelPotion()
+    {
+        for (int e = 0; e < HeelPotioncount; e++)
+        {
+            int InitRoom = Random.Range(0, roomNum);
+            int x = Random.Range(0, RoomDVI[InitRoom].Right - RoomDVI[InitRoom].Left) + RoomDVI[InitRoom].Left;
+            int y = Random.Range(0, RoomDVI[InitRoom].Bottom - RoomDVI[InitRoom].Top) + RoomDVI[InitRoom].Top;
+            Instantiate(HeelPotion, new Vector2(x - MapWidth / 2 + 1, y - MapHeight / 2 + 1), Quaternion.identity);
+        }
+    }
+
+    private void InitEx_HeelPotion()
+    {
+        for (int e = 0; e < Ex_HeelPotioncount; e++)
+        {
+            int InitRoom = Random.Range(0, roomNum);
+            int x = Random.Range(0, RoomDVI[InitRoom].Right - RoomDVI[InitRoom].Left) + RoomDVI[InitRoom].Left;
+            int y = Random.Range(0, RoomDVI[InitRoom].Bottom - RoomDVI[InitRoom].Top) + RoomDVI[InitRoom].Top;
+            Instantiate(Ex_HeelPotion, new Vector2(x - MapWidth / 2 + 1, y - MapHeight / 2 + 1), Quaternion.identity);
+        }
+    }
+
+    private void InitFull_HeelPotion()
+    {
+        for (int e = 0; e < Full_HeelPotioncount; e++)
+        {
+            int InitRoom = Random.Range(0, roomNum);
+            int x = Random.Range(0, RoomDVI[InitRoom].Right - RoomDVI[InitRoom].Left) + RoomDVI[InitRoom].Left;
+            int y = Random.Range(0, RoomDVI[InitRoom].Bottom - RoomDVI[InitRoom].Top) + RoomDVI[InitRoom].Top;
+            Instantiate(Full_HeelPotion, new Vector2(x - MapWidth / 2 + 1, y - MapHeight / 2 + 1), Quaternion.identity);
         }
     }
 }

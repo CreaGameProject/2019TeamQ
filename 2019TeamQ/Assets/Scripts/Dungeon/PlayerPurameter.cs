@@ -10,17 +10,35 @@ public class PlayerPurameter : MonoBehaviour
     {
         //　アイテムの全情報を作成
         itemDataList.Add(new ItemData(Resources.Load("None", typeof(Sprite)) as Sprite, "None", "素手", 0, "武器"));
-        itemDataList.Add(new ItemData(Resources.Load("Images/kenn", typeof(Sprite)) as Sprite, "BroadSword", "よくある剣", 5,"武器"));
-        itemDataList.Add(new ItemData(Resources.Load("spear", typeof(Sprite)) as Sprite, "LongSpear", "超長い槍", 4,"武器"));
-        itemDataList.Add(new ItemData(Resources.Load("Ax", typeof(Sprite)) as Sprite, "LegendAx", "伝説の斧", 7,"武器"));
-        itemDataList.Add(new ItemData(Resources.Load("Images/yumi", typeof(Sprite)) as Sprite, "LongBow", "木の弓", 3,"武器"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/kenn", typeof(Sprite)) as Sprite, "MysteriousSword", "不思議な兼", 5,"武器"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/ono", typeof(Sprite)) as Sprite, "MysteriousAx", "不思議な斧", 4,"武器"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/yari", typeof(Sprite)) as Sprite, "MysteriousSpear", "不思議な槍", 7,"武器"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/tate", typeof(Sprite)) as Sprite, "MysteriousShield", ";不思議な盾", 3,"盾"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/ya", typeof(Sprite)) as Sprite, "Arrow", "矢", 3, "矢"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/heel", typeof(Sprite)) as Sprite, "HeelPotion", "ヒールポーション", 30, "HP消費"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/Exheel", typeof(Sprite)) as Sprite, "Ex_HeelPotion", "エクスヒールポーション", 90, "HP消費"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/Fullheel", typeof(Sprite)) as Sprite, "Full_HeelPotion", "フルヒールポーション", 10000, "HP消費"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/power", typeof(Sprite)) as Sprite, "PowerPotion", "パワーポーション", 10, "PA消費"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/defence", typeof(Sprite)) as Sprite, "DefencePotion", "ディフェンスポーション", 10, "PD消費"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/lucky", typeof(Sprite)) as Sprite, "LuckyPotion", "ラッキーポーション", 0, "LC消費"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/poison", typeof(Sprite)) as Sprite, "PoisonPotion", "ポイズンポーション", 5, "PO消費"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/dispoison", typeof(Sprite)) as Sprite, "DispoisonPotion", "ディスポイズンポーション", 0, "PD消費"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/paralyze", typeof(Sprite)) as Sprite, "ParalyzePotion", "パラライズポーション", 4, "PR消費"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/wind", typeof(Sprite)) as Sprite, "WindPotion", "ウィンドポーション", 3, "WD消費"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/stome", typeof(Sprite)) as Sprite, "StomePotion", "ストームポーション", 8, "ST消費"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/anger", typeof(Sprite)) as Sprite, "AngerPotion", "アンガーポーション", 2, "AG消費"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/throw", typeof(Sprite)) as Sprite, "ThrowPotion", "スローポーション", 2, "SP消費"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/quick", typeof(Sprite)) as Sprite, "QuickPotion", "クイックポーション", 2, "SP消費"));
 
         NameList = new List<string>(itemDictionary.Keys); //個数表の初期化
 
     }
-
+    //個数を一つ一つ初期化
     public Dictionary<string, int> itemDictionary = new Dictionary<string, int>() {
-  {"BroadSword", 0}, {"LongSpear", 0} ,{"LegendAx", 0},{"LongBow",0}
+  {"MysteriousSword", 0}, {"MysteriousAx", 0} ,{"MysteriousSpear", 0},{"MysteriousShield",0},{"Arrow",0},
+        {"HeelPotion",0},{"Ex_HeelPotion",0},{"Full_HeelPotion",0},{"PowerPotion",0},{"DefencePotion",0},
+        {"LuckyPotion",0},{"PoisonPotion",0},{"DispoisonPotion",0},{"ParalyzePotion",0},
+        {"WindPotion",0},{"StomePotion",0},{"AngerPotion",0},{"ThrowPotion",0},{"QuickPotion",0}
 };
     public List<string> NameList;          //アイテムの個数表
 
@@ -97,10 +115,10 @@ public class PlayerPurameter : MonoBehaviour
             itemFlags.Add(item.GetItemName(), false);
         }
         //　とりあえずアイテムを持っていることにしない
-        itemFlags["BroadSword"] = false;
-        itemFlags["LongSpear"] = false;
-        itemFlags["LegendAx"] = false;
-        itemFlags["LongBow"] = false;
+        foreach (var item in GetItemDataList())
+        {
+            itemFlags[item.GetItemName()] = false;
+        }
 
         CurrentWeaponState = itemDataList[0];
     }

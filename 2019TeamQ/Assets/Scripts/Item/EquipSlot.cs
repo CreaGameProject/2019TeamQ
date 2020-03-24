@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 
 public class EquipSlot : MonoBehaviour
@@ -9,16 +10,16 @@ public class EquipSlot : MonoBehaviour
 {
     GameObject EquipText; //equipテキストを取得
     ItemData Itemdata;//クリックされたアイテムのデータ用変数
-    [SerializeField]
-    private ProcessingSlot processingSlot;//ProcessingSlotスクリプトを取得
+
 
     PlayerPurameter codeB; //PlayerPuramaterスクリプトを取得
 
-    int WAtk;//武器攻撃力
     int i;//装備状態変数　0で非装備、1で装備
 
     PointerEventData pointer;
     GameObject clickedGameObject;//ray用変数
+
+    Text Quantity_text;//アイテム数テキスト
 
     void Start()
     {
@@ -52,7 +53,7 @@ public class EquipSlot : MonoBehaviour
                     Itemdata = clickedGameObject.GetComponent<ProcessingSlot>().myItemData; //クリックされたスロットのアイテム情報を代入
                     if (Itemdata.GetItemType()=="武器") {　//武器の場合
                         soubi();
-                    }else if (Itemdata.GetItemType() == "消費")　//消費アイテムの場合
+                    }else if (Itemdata.GetItemType() == "HP消費")　//消費アイテムの場合
                     {
                         syouhi();
                     }
@@ -61,6 +62,7 @@ public class EquipSlot : MonoBehaviour
 
         }
         Debug.Log("攻撃力"+codeB.PAtk);
+        Debug.Log("体力" + codeB.PNowHP);
     }
 
     public void soubi()
@@ -68,14 +70,13 @@ public class EquipSlot : MonoBehaviour
 
         if (i == 1 && EquipText.activeSelf == true)//currentweaponにスロットにあるアイテムが装備してある場合
         {
-            codeB.CurrentWeaponState = codeB.itemDataList[0];//currentWeaponStateをnull、装備を外す
+            codeB.CurrentWeaponState = codeB.itemDataList[0];//currentWeaponStateを素手に、装備を外す
             i--;
         }
         else if (i == 0 && EquipText.activeSelf == false)//currentweaponにスロットにあるアイテムが装備していない場合
 
         {
             codeB.CurrentWeaponState = clickedGameObject.GetComponent<ProcessingSlot>().myItemData; //currentweaponにスロットにあるアイテムを装備する
-            WAtk = codeB.CurrentWeaponState.GetItemPower();
             i++;
 
         }
@@ -84,7 +85,6 @@ public class EquipSlot : MonoBehaviour
         {
             codeB.CurrentWeaponState = codeB.itemDataList[0];
             codeB.CurrentWeaponState = Itemdata; //currentweaponにスロットにあるアイテムを装備する
-            WAtk = codeB.CurrentWeaponState.GetItemPower();
 
         }
 
@@ -92,16 +92,33 @@ public class EquipSlot : MonoBehaviour
 
     public void syouhi()
     {
-        if (codeB.itemDictionary[Itemdata.GetItemName()]>1)
+        if (codeB.itemDictionary[Itemdata.GetItemName()]>1)//個数が2つ以上の場合
         {
-            codeB.itemDictionary[Itemdata.GetItemName()] -= 1;
-        }
-        else if (codeB.itemDictionary[Itemdata.GetItemName()] == 1) {
+            codeB.itemDictionary[Itemdata.GetItemName()] -= 1;//個数-1
 
-            codeB.itemDictionary[Itemdata.GetItemName()] -= 1;
-            codeB.itemFlags[Itemdata.GetItemName()] = false; 
+            //アイテム数テキストの数字を1減らす
+            Quantity_text= clickedGameObject.transform.GetChild(2).gameObject.GetComponent<Text>();
+            string itemkazu = Quantity_text.text;
+            int a = int.Parse(itemkazu);
+            a--;
+            Quantity_text.text = "" +a;
+            //ここまで
         }
-        codeB.PNowHPUP(Itemdata.GetItemPower());
+        else if (codeB.itemDictionary[Itemdata.GetItemName()] == 1) {//個数が1つの場合
+
+            codeB.itemDictionary[Itemdata.GetItemName()] -= 1;//個数-1
+            codeB.itemFlags[Itemdata.GetItemName()] = false;//アイテムを所持していないことにする
+            clickedGameObject.SetActive(false);//アイテムスロットを非表示にする
+
+            //アイテム数テキストの数字を1減らす
+            Quantity_text = clickedGameObject.transform.GetChild(2).gameObject.GetComponent<Text>();
+            string itemkazu = Quantity_text.text;
+            int a = int.Parse(itemkazu);
+            a--;
+            Quantity_text.text = "" + a;
+            //ここまで
+        }
+        codeB.PNowHPUP(Itemdata.GetItemPower());//hp回復
 
     }
 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1817499789295412860}
   - component: {fileID: -1550233753064602031}
   m_Layer: 0
-  m_Name: BroadSword
+  m_Name: MysteriousSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

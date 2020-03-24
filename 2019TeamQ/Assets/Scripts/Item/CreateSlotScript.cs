@@ -3,8 +3,13 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
+
 public class CreateSlotScript : MonoBehaviour
 {
+    string itemname;
+    int itemQuantity;
+    Text Quantity_text;
+
 
     //　アイテム情報のスロットプレハブ
     [SerializeField]
@@ -12,15 +17,15 @@ public class CreateSlotScript : MonoBehaviour
     //　主人公のステータス
     [SerializeField]
     private PlayerPurameter myStatus;
-    //　アイテムデータベース
-    [SerializeField]
-    private PlayerPurameter itemDataBase;
+
+
+
 
     //　アクティブになった時
     void OnEnable()
     {
         //　アイテムデータベースに登録されているアイテム用のスロットを全作成
-        CreateSlot(itemDataBase.GetItemDataList());
+        CreateSlot(myStatus.GetItemDataList());
     }
 
     //　アイテムスロットの作成
@@ -41,6 +46,12 @@ public class CreateSlotScript : MonoBehaviour
                 instanceSlot.transform.localScale = new Vector3(1f, 1f, 1f);
                 //　アイテム情報をスロットのProcessingSlotに設定する
                 instanceSlot.GetComponent<ProcessingSlot>().SetItemData(item);
+                //アイテムの個数をテキストに設定し、表示する
+                itemname = item.GetItemName();
+                Debug.Log(itemname);
+                Quantity_text = instanceSlot.transform.GetChild(2).gameObject.GetComponent<Text>();
+                itemQuantity = myStatus.itemDictionary[itemname];
+                Quantity_text.text = "" + itemQuantity;
             }
         }
     }
