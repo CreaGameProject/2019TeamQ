@@ -5,16 +5,24 @@ using UnityEngine;
 
 public class PauseScript : MonoBehaviour
 {
+    EquipSlot codeES; //EquipSlotスクリプトの変数
 
     //　ポーズした時に表示するUI
     [SerializeField]
     private GameObject pauseUI;
 
-    // Update is called once per frame
+    void Start()
+    {
+        codeES = GetComponent<EquipSlot>();//EquipSlotを取得
+    }
+
     void Update()
     {
         if (Input.GetKeyDown("q"))
         {
+
+
+
             //　ポーズUIのアクティブ、非アクティブを切り替え
             pauseUI.SetActive(!pauseUI.activeSelf);
 
@@ -26,6 +34,8 @@ public class PauseScript : MonoBehaviour
             }
             else
             {
+                codeES.b=0;
+                //codeES.clickedGameObject.transform.GetChild(3).gameObject.SetActive(false);
                 Time.timeScale = 1f;
             }
         }

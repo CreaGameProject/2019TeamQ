@@ -9,30 +9,37 @@ public class EquipSlot : MonoBehaviour
 
 {
     GameObject EquipText; //equipテキストを取得
-    ItemData Itemdata;//クリックされたアイテムのデータ用変数
+  public ItemData Itemdata;//クリックされたアイテムのデータ用変数
 
 
     PlayerPurameter codeB; //PlayerPuramaterスクリプトを取得
 
-    int i;//装備状態変数　0で非装備、1で装備
+    int i;//武器装備状態変数　0で非装備、1で装備
+    int t;//盾装備状態変数　0で非装備、1で装備
+   public int b;//botton表示状態変数　0で非表示、1で表示
 
     PointerEventData pointer;
-    GameObject clickedGameObject;//ray用変数
+    GameObject targetGameObject;//ray用変数
+
+   public GameObject clickedGameObject;//アイテム用変数
 
     Text Quantity_text;//アイテム数テキスト
 
     void Start()
     {
         codeB = GetComponent<PlayerPurameter>();//PlayerPurameterを取得
-        i = 0;  //非装備状態
+        i = 0;　//非装備状態
+        t = 0;  //非装備状態
+        b = 0; //botton非表示
         pointer = new PointerEventData(EventSystem.current);
 
-
+        targetGameObject = null;
     }
 
     void Update()
     {
         codeB.PAtkUp();
+        codeB.PDefUp();
         if (Input.GetMouseButtonDown(0))
         {
 
@@ -45,25 +52,54 @@ public class EquipSlot : MonoBehaviour
 
             foreach (RaycastResult target in results)
             {
-                clickedGameObject = target.gameObject;
+                targetGameObject = target.gameObject;
 
-                if (clickedGameObject.tag == "itemslot")
+                if (targetGameObject.tag == "itemslot")
                 {
-                    EquipText = clickedGameObject.transform.GetChild(1).gameObject;　//クリックされたスロットのEテキストを指定
-                    Itemdata = clickedGameObject.GetComponent<ProcessingSlot>().myItemData; //クリックされたスロットのアイテム情報を代入
-                    if (Itemdata.GetItemType()=="武器") {　//武器の場合
-                        soubi();
-                    }else if (Itemdata.GetItemType() == "HP消費")　//消費アイテムの場合
+                    if (b == 0)
                     {
-                        syouhi();
+                        clickedGameObject = target.gameObject;
+                        EquipText = clickedGameObject.transform.GetChild(1).gameObject; //クリックされたスロットのEテキストを指定
+                        Itemdata = clickedGameObject.GetComponent<ProcessingSlot>().myItemData; //クリックされたスロットのアイテム情報を代入
+                        clickedGameObject.transform.GetChild(3).gameObject.SetActive(true);
+                        b++;
                     }
+                    else if(b == 1){
+                        clickedGameObject.transform.GetChild(3).gameObject.SetActive(false);
+                        clickedGameObject = target.gameObject;
+                        EquipText = clickedGameObject.transform.GetChild(1).gameObject; //クリックされたスロットのEテキストを指定
+                        Itemdata = clickedGameObject.GetComponent<ProcessingSlot>().myItemData; //クリックされたスロットのアイテム情報を代入
+                        clickedGameObject.transform.GetChild(3).gameObject.SetActive(true);
+                    }
+
                 }
             }
 
         }
         Debug.Log("攻撃力"+codeB.PAtk);
         Debug.Log("体力" + codeB.PNowHP);
+        Debug.Log("防御力" + codeB.PDef);
+
+
     }
+
+    //public void Onclick()
+    //{
+    //    if (Itemdata.GetItemType() == "武器")
+    //    { //武器の場合
+    //        soubi();
+    //    }
+    //    else if (Itemdata.GetItemType() == "盾")
+    //    {//盾の場合
+    //        tate();
+    //    }
+    //    else if (Itemdata.GetItemType() == "HP消費") //消費アイテムの場合
+    //    {
+    //        syouhi();
+    //    }
+    //    b--;
+    //    clickedGameObject.transform.GetChild(3).gameObject.SetActive(false);
+    //}
 
     public void soubi()
     {
@@ -76,7 +112,7 @@ public class EquipSlot : MonoBehaviour
         else if (i == 0 && EquipText.activeSelf == false)//currentweaponにスロットにあるアイテムが装備していない場合
 
         {
-            codeB.CurrentWeaponState = clickedGameObject.GetComponent<ProcessingSlot>().myItemData; //currentweaponにスロットにあるアイテムを装備する
+            codeB.CurrentWeaponState = Itemdata; //currentweaponにスロットにあるアイテムを装備する
             i++;
 
         }
@@ -85,6 +121,31 @@ public class EquipSlot : MonoBehaviour
         {
             codeB.CurrentWeaponState = codeB.itemDataList[0];
             codeB.CurrentWeaponState = Itemdata; //currentweaponにスロットにあるアイテムを装備する
+
+        }
+
+    }
+
+    public void tate()
+    {
+
+        if (t == 1 && EquipText.activeSelf == true)//CurrentshieldStateにスロットにあるアイテムが装備してある場合
+        {
+            codeB.CurrentshieldState = codeB.itemDataList[0];//CurrentshieldStateを素手に、装備を外す
+            t--;
+        }
+        else if (t == 0 && EquipText.activeSelf == false)//CurrentshieldStateにスロットにあるアイテムが装備していない場合
+
+        {
+            codeB.CurrentshieldState = Itemdata; //CurrentshieldStateにスロットにあるアイテムを装備する
+            t++;
+
+        }
+        else if (t == 1 && EquipText.activeSelf == false)//CurrentshieldStateにスロットにあるアイテムが装備していない場合
+
+        {
+            codeB.CurrentshieldState = codeB.itemDataList[0];
+            codeB.CurrentshieldState = Itemdata; //CurrentshieldStateにスロットにあるアイテムを装備する
 
         }
 

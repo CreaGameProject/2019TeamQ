@@ -27,11 +27,15 @@ public class DungeonGenerator : MonoBehaviour
 
     [Header("剣のトランスフォーム")]
     [SerializeField]
-    private GameObject BroadSword;
+    private GameObject MysteriousSword;
+
+    [Header("盾のトランスフォーム")]
+    [SerializeField]
+    private GameObject　MysteriousShield;
 
     [Header("弓のトランスフォーム")]
     [SerializeField]
-    private GameObject LongBow;
+    private GameObject Arrow;
 
     [Header("ヒールポーションのトランスフォーム")]
     [SerializeField]
@@ -52,11 +56,15 @@ public class DungeonGenerator : MonoBehaviour
     //剣の数
     [SerializeField]
     [Range(0, 5)]
-    int BroadSwordcount;
+    int MysteriousSwordcount;
     //弓の数
     [SerializeField]
     [Range(0, 5)]
-    int LongBowcount;
+    int Arrowcount;
+
+    [SerializeField]
+    [Range(0, 5)]
+    int MysteriousShieldcount;
 
     [SerializeField]
     [Range(0, 5)]
@@ -111,8 +119,9 @@ public class DungeonGenerator : MonoBehaviour
         CreateDangeon();
         InitPlayer();
         InitEnemy();
-        InitBroadSword();
-        InitLongBow();
+        InitMysteriousSword();
+        InitArrow();
+        InitMysteriousShield();
         InitHeelPotion();
         InitEx_HeelPotion();
         InitFull_HeelPotion();
@@ -413,24 +422,34 @@ public class DungeonGenerator : MonoBehaviour
             Instantiate(Enemy, new Vector2(x - MapWidth / 2+1, y - MapHeight / 2+1), Quaternion.identity);
         }
     }
-    private void InitBroadSword()
+    private void InitMysteriousSword()
     {
-        for (int e = 0; e < BroadSwordcount; e++)
+        for (int e = 0; e < MysteriousSwordcount; e++)
         {
             int InitRoom = Random.Range(0, roomNum);
             int x = Random.Range(0, RoomDVI[InitRoom].Right - RoomDVI[InitRoom].Left) + RoomDVI[InitRoom].Left;
             int y = Random.Range(0, RoomDVI[InitRoom].Bottom - RoomDVI[InitRoom].Top) + RoomDVI[InitRoom].Top;
-            Instantiate(BroadSword, new Vector2(x - MapWidth / 2 + 1, y - MapHeight / 2 + 1), Quaternion.identity);
+            Instantiate(MysteriousSword, new Vector2(x - MapWidth / 2 + 1, y - MapHeight / 2 + 1), Quaternion.identity);
         }
     }
-    private void InitLongBow()
+    private void InitArrow()
     {
-        for (int e = 0; e < LongBowcount; e++)
+        for (int e = 0; e < Arrowcount; e++)
         {
             int InitRoom = Random.Range(0, roomNum);
             int x = Random.Range(0, RoomDVI[InitRoom].Right - RoomDVI[InitRoom].Left) + RoomDVI[InitRoom].Left;
             int y = Random.Range(0, RoomDVI[InitRoom].Bottom - RoomDVI[InitRoom].Top) + RoomDVI[InitRoom].Top;
-            Instantiate(LongBow, new Vector2(x - MapWidth / 2 + 1, y - MapHeight / 2 + 1), Quaternion.identity);
+            Instantiate(Arrow, new Vector2(x - MapWidth / 2 + 1, y - MapHeight / 2 + 1), Quaternion.identity);
+        }
+    }
+    private void InitMysteriousShield()
+    {
+        for (int e = 0; e < MysteriousShieldcount; e++)
+        {
+            int InitRoom = Random.Range(0, roomNum);
+            int x = Random.Range(0, RoomDVI[InitRoom].Right - RoomDVI[InitRoom].Left) + RoomDVI[InitRoom].Left;
+            int y = Random.Range(0, RoomDVI[InitRoom].Bottom - RoomDVI[InitRoom].Top) + RoomDVI[InitRoom].Top;
+            Instantiate(MysteriousShield, new Vector2(x - MapWidth / 2 + 1, y - MapHeight / 2 + 1), Quaternion.identity);
         }
     }
 

@@ -81,15 +81,17 @@ public class ProcessingSlot : MonoBehaviour
 
     void Update()
     {
-       
-        if (codeB.CurrentWeaponState == myItemData)
+        //E-textの表示非表示
+
+        if (codeB.CurrentWeaponState == myItemData|| codeB.CurrentshieldState == myItemData) 
         {
             transform.GetChild(1).gameObject.SetActive(true);
         }
-        else if (codeB.CurrentWeaponState != myItemData)
+        else if (codeB.CurrentWeaponState != myItemData&& codeB.CurrentshieldState != myItemData)
         {
             transform.GetChild(1).gameObject.SetActive(false);
         }
+
     }
 }
 
