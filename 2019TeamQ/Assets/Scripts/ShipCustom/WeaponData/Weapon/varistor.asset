@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78eba66182563734cb5ddc11638860a7, type: 3}
+  m_Name: varistor
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 366ab97318a38be418e9176eaaaba1fe, type: 3}
+  weaponName: "\u30D0\u30EA\u30B9\u30BF"
+  size: 0100000001000000
+  explanatory: "1\u30BF\u30FC\u30F3\u3067\u5927\u304D\u306A\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u3002\u30AF\u30FC\u30EB\u30BF\u30A4\u30E0\u304C\u5FC5\u8981\u3002"
+  material: "\u76FE \xD7 1"
+  weaponObject: {fileID: 460680465336984383, guid: f8cc9c7c48f06ec4caad7e49880d73a3,
+    type: 3}
