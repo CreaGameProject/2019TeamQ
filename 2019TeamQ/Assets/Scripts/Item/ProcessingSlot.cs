@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
+//アイテムスロットの作成、アイテムスロットにアイテム情報をセット、アイテムスロットの表示・非表示、アイテム情報をインベントリのテキストに表示するスクリプト
 public class ProcessingSlot : MonoBehaviour
 {
 
@@ -50,6 +51,7 @@ public class ProcessingSlot : MonoBehaviour
 
     public void MouseOver()
     {
+        //マウスポインタがアイテムスロットに触れたら、アイテム情報を表示
         if (itemSlotTitleUI != null)
         {
             Destroy(itemSlotTitleUIInstance);
@@ -83,11 +85,11 @@ public class ProcessingSlot : MonoBehaviour
     {
         //E-textの表示非表示
 
-        if (codeB.CurrentWeaponState == myItemData|| codeB.CurrentshieldState == myItemData) 
+        if (codeB.CurrentWeaponState == myItemData || codeB.CurrentshieldState == myItemData)
         {
             transform.GetChild(1).gameObject.SetActive(true);
         }
-        else if (codeB.CurrentWeaponState != myItemData&& codeB.CurrentshieldState != myItemData)
+        else if (codeB.CurrentWeaponState != myItemData && codeB.CurrentshieldState != myItemData)
         {
             transform.GetChild(1).gameObject.SetActive(false);
         }

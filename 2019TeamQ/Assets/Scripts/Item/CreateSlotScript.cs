@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-
+//インベントリのアイテムスロットを作成するスクリプト
 public class CreateSlotScript : MonoBehaviour
 {
     string itemname;
@@ -21,7 +21,7 @@ public class CreateSlotScript : MonoBehaviour
 
 
 
-    //　アクティブになった時
+    //　インベントリの表示が呼び出された時
     void OnEnable()
     {
         //　アイテムデータベースに登録されているアイテム用のスロットを全作成
@@ -36,6 +36,7 @@ public class CreateSlotScript : MonoBehaviour
 
         foreach (var item in itemList)
         {
+            //全アイテムを探索し、アイテムを所持している(アイテムフラグが1)ならば、そのアイテムのスロットを作成する。
             if (myStatus.GetItemFlag(item.GetItemName()))
             {
                 //　スロットのインスタンス化

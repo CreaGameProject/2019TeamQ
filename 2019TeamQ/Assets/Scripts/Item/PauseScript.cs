@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+//インベントリの表示・非表示のスクリプト
 public class PauseScript : MonoBehaviour
 {
     EquipSlot codeES; //EquipSlotスクリプトの変数
@@ -13,30 +13,35 @@ public class PauseScript : MonoBehaviour
 
     void Start()
     {
-        codeES = GetComponent<EquipSlot>();//EquipSlotを取得
+        codeES = GetComponent<EquipSlot>();//EquipSlotを取得(以下codeES)
     }
 
     void Update()
     {
+         //キーボードのQを押したとき
         if (Input.GetKeyDown("q"))
         {
 
 
 
-            //　ポーズUIのアクティブ、非アクティブを切り替え
+            //　インベントリの表示・非表示を切り替え
             pauseUI.SetActive(!pauseUI.activeSelf);
 
-            //　ポーズUIが表示されてる時は停止
+            //　インベントリが表示されてる時は停止
             if (pauseUI.activeSelf)
             {
                 Time.timeScale = 0f;
-                //　ポーズUIが表示されてなければ通常通り進行
+
             }
             else
             {
-                codeES.b=0;
-                //codeES.clickedGameObject.transform.GetChild(3).gameObject.SetActive(false);
+
+                //　インベントリが表示されてなければtimeScale1(通常)
                 Time.timeScale = 1f;
+
+                codeES.b=0;//アイテムスロットのボタンの表示状態を非表示に設定
+
+                //codeES.clickedGameObject.transform.GetChild(3).gameObject.SetActive(false);//多分いらないかも?
             }
         }
     }

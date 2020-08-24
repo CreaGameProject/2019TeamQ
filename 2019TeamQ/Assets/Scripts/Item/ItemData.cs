@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//アイテム情報を返すスクリプト。アイテムの情報を追加したい場合はここに追加してください。
 public class ItemData
 {
 

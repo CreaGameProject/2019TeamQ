@@ -8,7 +8,7 @@ public class PlayerPurameter : MonoBehaviour
 {
     void Awake()
     {
-        //　アイテムの全情報を作成
+        //　アイテムの全情報を作成。構造体の各メンバの意味(初期化)は、ItemDataスクリプトに設定、記述してあります。
         itemDataList.Add(new ItemData(Resources.Load("None", typeof(Sprite)) as Sprite, "None", "素手", 0, "武器"));
         itemDataList.Add(new ItemData(Resources.Load("Images/kenn", typeof(Sprite)) as Sprite, "MysteriousSword", "不思議な剣", 5,"武器"));
         itemDataList.Add(new ItemData(Resources.Load("Images/ono", typeof(Sprite)) as Sprite, "MysteriousAx", "不思議な斧", 4,"武器"));
@@ -33,7 +33,7 @@ public class PlayerPurameter : MonoBehaviour
         NameList = new List<string>(itemDictionary.Keys); //個数表の初期化
 
     }
-    //個数を一つ一つ初期化
+    //個数を一つ一つ初期化。繰り返し文で短縮できそうですがわかりませんでした
     public Dictionary<string, int> itemDictionary = new Dictionary<string, int>() {
   {"MysteriousSword", 0}, {"MysteriousAx", 0} ,{"MysteriousSpear", 0},{"MysteriousShield",0},{"Arrow",0},
         {"HeelPotion",0},{"Ex_HeelPotion",0},{"Full_HeelPotion",0},{"PowerPotion",0},{"DefencePotion",0},
@@ -79,20 +79,20 @@ public class PlayerPurameter : MonoBehaviour
             }
         }
     }
-    //　アイテムを持っているかどうかのフラグ
+    //　アイテムを持っているかどうかのフラグを初期化
     public Dictionary<string, bool> itemFlags = new Dictionary<string, bool>();
-    //　アイテムデータのリスト
+    //　アイテムデータのリストの初期化
     public List<ItemData> itemDataList = new List<ItemData>();
 
 
 
-    //　全アイテムデータを返す
+    //　全アイテムデータを返す //foreach (var item in GetItemDataList())のように記述すれば、全てのアイテムを一つ一つ探索できます。
     public List<ItemData> GetItemDataList()
     {
 
         return itemDataList;
     }
-    //　個々のアイテムデータを返す
+    //　あるアイテムを探すときの関数。引数に見つけたいアイテムを入れてください。
     public ItemData GetItemData(string itemName)
     {
         foreach (var item in itemDataList)
@@ -105,7 +105,7 @@ public class PlayerPurameter : MonoBehaviour
         return null;
     }
 
-    //ここからアイテム管理導入
+
 
     private void Start()
     {
@@ -115,12 +115,12 @@ public class PlayerPurameter : MonoBehaviour
         {
             itemFlags.Add(item.GetItemName(), false);
         }
-        //　とりあえずアイテムを持っていることにしない
+        //　とりあえずアイテムを持っていることにしない。前述でfalseに設定してあるが、うまくいかなかったので、ここでもう一度falseに設定しなおしています。
         foreach (var item in GetItemDataList())
         {
             itemFlags[item.GetItemName()] = false;
         }
-
+        //最初に現在持っている武器と盾を素手に設定。ほかに装備の種類を追加した場合、ここで一度素手で初期化してください。
         CurrentWeaponState = itemDataList[0];
         CurrentshieldState = itemDataList[0];
     }
@@ -131,24 +131,25 @@ public class PlayerPurameter : MonoBehaviour
         return itemFlags[itemName];
     }
 
-    //ここまでアイテム管理
 
-    //ステータス上昇・下降
+    //ここからアイテムによるステータスの上昇・下降管理。EquipSlotスクリプトで毎フレームこれを呼び出してステータスを更新しています。
+    //毎回呼び出しているので動作が重くなる原因になるかもしれないので上手くEquipSlotスクリプトとPlayerPurameterスクリプトを統合できそうならしてほしいです。
     public void PAtkUp() //攻撃力上昇
     {
         PAtk = 10;
-        //装備の攻撃力分プレイヤーの攻撃力を上昇
+        //武器の攻撃力分プレイヤーの攻撃力を上昇
         PAtk =CurrentWeaponState.GetItemPower() + PAtk;
     }
     public void PDefUp() //防御力上昇
     {
         PDef = 10;
-        //装備の攻撃力分プレイヤーの攻撃力を上昇
+        //盾の防御力分プレイヤーの防御力を上昇
         PDef = CurrentshieldState.GetItemPower() + PDef;
     }
-    public void PNowHPUP(int itemHP) 
+    public void PNowHPUP(int itemHP) //ポーションの効果値分HP上昇
     {
         PNowHP += itemHP;
     }
+    //他にアイテムの効果を追加したら、ここにその効果によるステータスの変化をこれ以降に記述してください。
 
 }

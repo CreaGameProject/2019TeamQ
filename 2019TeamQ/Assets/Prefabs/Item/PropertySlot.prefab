@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 1746524085063107115}
   - component: {fileID: 5783157126134480718}
   - component: {fileID: 8715421915668560801}
+  - component: {fileID: 4374019381772647007}
   - component: {fileID: 629519067050354647}
   - component: {fileID: 8214531173884367929}
   - component: {fileID: 1130785371497666027}
@@ -277,6 +278,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4374019381772647007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3198603869733254868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d002873494fb3489ad00b69e37cc7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &629519067050354647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,7 +332,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8715421915668560801}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4374019381772647007}
+        m_MethodName: Onclick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &8214531173884367929
@@ -454,6 +478,7 @@ GameObject:
   - component: {fileID: 8636160260568102994}
   - component: {fileID: 385365856647745315}
   - component: {fileID: 7654187939095787031}
+  - component: {fileID: 6590829908553377970}
   m_Layer: 5
   m_Name: "\u6295\u3052\u308B"
   m_TagString: Untagged
@@ -561,7 +586,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 892964401701975048}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6590829908553377970}
+        m_MethodName: Onclick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &385365856647745315
@@ -603,6 +639,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6590829908553377970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4738313532276509198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d027bb4bfca330042bef0856f8e32755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5448764752425223333
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,7 +745,6 @@ GameObject:
   - component: {fileID: 963670880001555426}
   - component: {fileID: 6009594237843428303}
   - component: {fileID: 2194521758479416582}
-  - component: {fileID: 6136431881173111446}
   m_Layer: 5
   m_Name: "\u4F7F\u7528\u3059\u308B"
   m_TagString: Untagged
@@ -870,18 +917,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6136431881173111446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5750118099913484356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec5b325d1a669df4c87ca5db9953008e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6918886332127500466
 GameObject:
   m_ObjectHideFlags: 0
