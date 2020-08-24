@@ -10,7 +10,7 @@ public class PlayerPurameter : MonoBehaviour
     {
         //　アイテムの全情報を作成
         itemDataList.Add(new ItemData(Resources.Load("None", typeof(Sprite)) as Sprite, "None", "素手", 0, "武器"));
-        itemDataList.Add(new ItemData(Resources.Load("Images/kenn", typeof(Sprite)) as Sprite, "MysteriousSword", "不思議な兼", 5,"武器"));
+        itemDataList.Add(new ItemData(Resources.Load("Images/kenn", typeof(Sprite)) as Sprite, "MysteriousSword", "不思議な剣", 5,"武器"));
         itemDataList.Add(new ItemData(Resources.Load("Images/ono", typeof(Sprite)) as Sprite, "MysteriousAx", "不思議な斧", 4,"武器"));
         itemDataList.Add(new ItemData(Resources.Load("Images/yari", typeof(Sprite)) as Sprite, "MysteriousSpear", "不思議な槍", 7,"武器"));
         itemDataList.Add(new ItemData(Resources.Load("Images/tate", typeof(Sprite)) as Sprite, "MysteriousShield", ";不思議な盾", 3,"盾"));
@@ -43,6 +43,7 @@ public class PlayerPurameter : MonoBehaviour
     public List<string> NameList;          //アイテムの個数表
 
     public ItemData CurrentWeaponState ; //装備中の武器
+    public ItemData CurrentshieldState; //装備中の盾
     public bool Shield { get; set; } = false;
     public int PLevel { get; set; } = 1;            //レベル
     [SerializeField]
@@ -121,6 +122,7 @@ public class PlayerPurameter : MonoBehaviour
         }
 
         CurrentWeaponState = itemDataList[0];
+        CurrentshieldState = itemDataList[0];
     }
 
     //　アイテムを所持しているかどうか
@@ -132,11 +134,17 @@ public class PlayerPurameter : MonoBehaviour
     //ここまでアイテム管理
 
     //ステータス上昇・下降
-    public void PAtkUp() //装備
+    public void PAtkUp() //攻撃力上昇
     {
         PAtk = 10;
         //装備の攻撃力分プレイヤーの攻撃力を上昇
         PAtk =CurrentWeaponState.GetItemPower() + PAtk;
+    }
+    public void PDefUp() //防御力上昇
+    {
+        PDef = 10;
+        //装備の攻撃力分プレイヤーの攻撃力を上昇
+        PDef = CurrentshieldState.GetItemPower() + PDef;
     }
     public void PNowHPUP(int itemHP) 
     {
